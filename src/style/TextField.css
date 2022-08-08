@@ -1,3 +1,7 @@
+.inputBox {
+    position: relative;
+}
+
 .text {
     position: relative;
     font-size: 16px;
@@ -21,4 +25,25 @@
 
 .text:focus::placeholder {
     opacity: 1;
+}
+
+.label {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    transition: all 0.2s;
+    padding: 2px 4px;
+    z-index: 1;
+    color: #b3b3b3
+}
+
+.text:focus+.label {
+    top: 4px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
+
+.hidden {
+    visibility: hidden;
 }

@@ -11,6 +11,7 @@ function App() {
 
   const [countryName, setCountryName] = useState('')
   const [countryInfo, setCountryInfo] = useState<undefined | any>(undefined)
+  const [inputStyle, setInputStyle] = useState<string>('label')
 
   const COUNTRIES_BASE_URL = "https://restcountries.com/v2"
 
@@ -29,6 +30,18 @@ function App() {
     }
   }
 
+  const checkInput = () => {
+    if (countryName.length === 0) {
+      setInputStyle('label')
+    } else {
+      setInputStyle('label hidden')
+    }
+  }
+
+  const showLabel = () => {
+    setInputStyle('label')
+  }
+
   return (
     <div className='app'>
       <div className='searchBox'>
@@ -37,7 +50,6 @@ function App() {
         </h1>
 
         <div className='inputBox'>
-          <label className='label'>Country Name:</label>
           <input
             type="text"
             className='text'
@@ -46,7 +58,15 @@ function App() {
             placeholder="Enter a country's name"
             onChange={e => setCountryName(e.target.value)}
             onKeyDown={handleKeyDown}
+            onBlur={checkInput}
+            onFocus={showLabel}
           />
+          <label
+            className={inputStyle}
+            htmlFor='country-name'
+          >
+            Country Name
+          </label>
           <button className='searchBtn' onClick={search}>
             <FontAwesomeIcon icon={faMagnifyingGlass} className='icon' /> Search
           </button>
