@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from "axios"
 import './style/App.css'
 import './style/TextField.css'
-import './style/CountryDisplay.css'
 import CountryDisplay from "./components/CountryDisplay"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
@@ -18,7 +17,7 @@ function App() {
   const search = () => {
     axios.get(COUNTRIES_BASE_URL + "/name/" + countryName).then(res => {
       setCountryInfo(res.data)
-    }).catch(err => {
+    }).catch(() => {
       console.log("country not found")
       setCountryInfo(undefined)
     })

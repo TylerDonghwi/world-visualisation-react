@@ -1,25 +1,45 @@
 import React from 'react'
+import './CountryDisplay.css'
 
-export default function CountryDisplay(prop: any) {
+
+export default function CountryDisplay({ country }: any) {
+
+    const getBackgroundColor = () => {
+        const continent = country.region
+        let backColor = 'white'
+        if (continent.includes('Asia')) {
+            backColor = 'rgba(0,255,0,0.5)'
+        } else if (continent.includes('Europe')) {
+            backColor = 'rgba(0,0,0,0.5)'
+        } else if (continent.includes('Africa')) {
+            backColor = 'rgba(255,255,0,0.5)'
+        } else if (continent.includes('Americas')) {
+            backColor = 'rgba(255,0,0,0.5)'
+        } else if (continent.includes('Oceania')) {
+            backColor = 'rgba(0,0,255,0.5)'
+        }
+        return backColor
+    }
 
     return (
-        <div className="countryResult" >
-            <h2>
-                {prop.country.name} ({prop.country.nativeName})
-            </h2>
-            <img className='flag' src={prop.country.flag} alt="no flag found" />
+        <div className="countryResult" style={{ backgroundColor: getBackgroundColor() }}>
+            <h4 className='countryName'>
+                {country.name} ({country.nativeName})
+            </h4>
+            <img className='flag' src={country.flag} alt="no flag found" title={`flag of ${country.name}`} />
             <p>
-                Population: {prop.country.population.toLocaleString('en', { maximumFractionDigits: 0 })}
+                Continent: {country.subregion}
             </p>
             <p>
-                Languages: {prop.country.languages[0].name}
+                Population: {country.population.toLocaleString('en', { maximumFractionDigits: 0 })}
             </p>
             <p>
-                Currencies: {prop.country.currencies[0].name} ({prop.country.currencies[0].code})
+                Languages: {country.languages[0].name}
             </p>
             <p>
-                Continent: {prop.country.subregion}
+                Currencies: {country.currencies[0].name} ({country.currencies[0].code})
             </p>
-        </div >
+
+        </ div >
     )
 }
