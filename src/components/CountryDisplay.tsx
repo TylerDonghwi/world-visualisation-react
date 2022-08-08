@@ -3,11 +3,11 @@ import React from 'react'
 export default function CountryDisplay(prop: any) {
 
     return (
-        <div id="country-result">
+        <div className="country-result" >
             <h2>
                 {prop.country.name} ({prop.country.nativeName})
             </h2>
-            <img src={prop.country.flag} alt="no flag found" />
+            <img className='flag' src={prop.country.flag} alt="no flag found" />
             <p>
                 Population: {prop.country.population.toLocaleString('en', { maximumFractionDigits: 0 })}
             </p>
@@ -20,6 +20,6 @@ export default function CountryDisplay(prop: any) {
             <p>
                 Continent: {prop.country.subregion}
             </p>
-        </div>
+        </div >
     )
 }

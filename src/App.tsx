@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from "axios"
 import './App.css'
-import CountryDisplay from "./countryDisplay/CountryDisplay"
+import CountryDisplay from "./components/CountryDisplay"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
 
@@ -19,26 +21,46 @@ function App() {
     })
   }
 
-  return (
-    <div>
-      <h1>
-        Country Search
-      </h1>
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.key === 'Enter') {
+      search()
+    }
+  }
 
-      <div>
-        <label>Country Name</label><br />
-        <input type="text" id="country-name" name="country-name" onChange={e => setCountryName(e.target.value)} /><br />
-        <button onClick={search}>
-          Search
-        </button>
+  return (
+    <div className='app'>
+      <div className='searchBox'>
+        <h1>
+          Country Search
+        </h1>
+
+        <div className='inputBox'>
+          <label className='label'>Country Name</label>
+          <input
+            type="text"
+            className='text'
+            id="country-name"
+            name="country-name"
+            placeholder="Enter a country's name"
+            onChange={e => setCountryName(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <button className='searchBtn' onClick={search}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} className='icon' /> Search
+          </button>
+        </div>
+
       </div>
 
-      <p>You have entered {countryName}</p>
 
       {countryInfo === undefined ? (
         <p>Country not found</p>
       ) : (
-        <CountryDisplay country={countryInfo[0]} />
+        <div className='countryContainer'>
+          {countryInfo.map((country: any) => (
+            <CountryDisplay key={country.name} country={country} />
+          ))}
+        </div>
       )}
 
     </div>
