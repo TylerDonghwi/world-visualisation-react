@@ -3,7 +3,7 @@ import React from 'react'
 export default function CountryDisplay(prop: any) {
 
     return (
-        <div className="country-result" >
+        <div className="countryResult" >
             <h2>
                 {prop.country.name} ({prop.country.nativeName})
             </h2>

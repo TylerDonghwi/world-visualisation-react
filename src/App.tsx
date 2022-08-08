@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from "axios"
-import './App.css'
+import './style/App.css'
+import './style/TextField.css'
+import './style/CountryDisplay.css'
 import CountryDisplay from "./components/CountryDisplay"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
@@ -30,12 +32,12 @@ function App() {
   return (
     <div className='app'>
       <div className='searchBox'>
-        <h1>
+        <h1 className='title'>
           Country Search
         </h1>
 
         <div className='inputBox'>
-          <label className='label'>Country Name</label>
+          <label className='label'>Country Name:</label>
           <input
             type="text"
             className='text'
@@ -49,19 +51,17 @@ function App() {
             <FontAwesomeIcon icon={faMagnifyingGlass} className='icon' /> Search
           </button>
         </div>
-
       </div>
 
-
-      {countryInfo === undefined ? (
-        <p>Country not found</p>
-      ) : (
-        <div className='countryContainer'>
-          {countryInfo.map((country: any) => (
+      <div className='countryContainer'>
+        {countryInfo === undefined ? (
+          <p>Country not found</p>
+        ) : (
+          countryInfo.map((country: any) => (
             <CountryDisplay key={country.name} country={country} />
-          ))}
-        </div>
-      )}
+          ))
+        )}
+      </div>
 
     </div>
   );

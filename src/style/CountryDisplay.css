@@ -1,0 +1,12 @@
+.countryContainer {
+    margin: 10px;
+}
+
+.countryResult {
+    background-color: antiquewhite;
+}
+
+.flag {
+    width: 200px;
+    border: 1px solid black;
+}
