@@ -1,3 +1,4 @@
+import { Language } from '@mui/icons-material'
 import React from 'react'
 import './CountryDisplay.css'
 
@@ -34,7 +35,9 @@ export default function CountryDisplay({ country }: any) {
                 Population: {country.population.toLocaleString('en', { maximumFractionDigits: 0 })}
             </p>
             <p>
-                Languages: {country.languages[0].name}
+                Languages: {country.languages.map((language: any, i: any) => (
+                    <span key={i}> {language.name}</span>
+                ))}
             </p>
             <p>
                 Currencies: {country.currencies[0].name} ({country.currencies[0].code})
