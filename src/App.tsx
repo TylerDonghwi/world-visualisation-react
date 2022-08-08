@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from "axios"
 import './App.css'
+import CountryDisplay from "./countryDisplay/CountryDisplay"
 
 function App() {
 
@@ -37,24 +38,7 @@ function App() {
       {countryInfo === undefined ? (
         <p>Country not found</p>
       ) : (
-        <div id="country-result">
-          <h1 id="country-result">
-            {countryInfo[0].name} ({countryInfo[0].nativeName})
-          </h1>
-          <img src={countryInfo[0].flag} alt="no flag found" />
-          <p>
-            Population: {countryInfo[0].population.toLocaleString('en', { maximumFractionDigits: 0 })}
-          </p>
-          <p>
-            Languages: {countryInfo[0].languages[0].name}
-          </p>
-          <p>
-            Currencies: {countryInfo[0].currencies[0].name} ({countryInfo[0].currencies[0].code})
-          </p>
-          <p>
-            Continent: {countryInfo[0].subregion}
-          </p>
-        </div>
+        <CountryDisplay country={countryInfo[0]} />
       )}
 
     </div>
